@@ -27,11 +27,10 @@ public class MailSenderService {
 
     public SendMailStatus sendMailForgetPwd(String from, MailDataDto data) {
         String templateName = "mail/template-email-forget-pwd.html";
-        return effectiveSendMail(from, data, templateName, "/forget-pwd/", FORGET_PWD_MAIL_SUBJECT);
+        return effectiveSendMail(from, data, templateName,  FORGET_PWD_MAIL_SUBJECT);
     }
 
-    private SendMailStatus effectiveSendMail(String from, MailDataDto data, String templateName, String url,
-                                             String mailSubject) {
+    private SendMailStatus effectiveSendMail(String from, MailDataDto data, String templateName, String mailSubject) {
         MailTemplate template = null;
         try {
             template = new MailTemplate(templateName);
@@ -44,7 +43,7 @@ public class MailSenderService {
         formatDate(replacements, data);
         String message = template.getTemplate(replacements);
 
-        MailModel mailModelData = MailModel.builder().from(from).to(Collections.singletonList(data.getTo())).subject(mailSubject).message(message).isHtml(true).build();
+        var mailModelData = MailModel.builder().from(from).to(Collections.singletonList(data.getTo())).subject(mailSubject).message(message).isHtml(true).build();
         try {
             sendMail.sendHtmlMail(mailModelData);
             return SendMailStatus.OK;

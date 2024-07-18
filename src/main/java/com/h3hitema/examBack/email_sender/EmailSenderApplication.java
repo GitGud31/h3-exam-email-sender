@@ -10,7 +10,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 
 @SpringBootApplication(exclude = {ReactiveSecurityAutoConfiguration.class, SecurityAutoConfiguration.class })
 @EnableConfigurationProperties({ApplicationProperties.class})
-
 public class EmailSenderApplication {
 
 	public static void main(String[] args) {

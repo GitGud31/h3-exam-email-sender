@@ -12,6 +12,6 @@ public record MailSenderController(MailSenderService service, ApplicationPropert
 
     @PostMapping()
     public Response getProfileById(@RequestBody MailDataDto mailDataDto) {
-        return new Response(service.sendMailForgetPwd(applicationProperties.getMailFrom(), mailDataDto).name());
+        return new Response(service.sendMailForgetPwd(applicationProperties.getMailFrom(), mailDataDto));
     }
 }
